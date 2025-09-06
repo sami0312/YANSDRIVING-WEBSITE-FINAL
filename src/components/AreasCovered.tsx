@@ -17,7 +17,8 @@ export default function AreasCovered() {
 
   const testCentres = [
     'Mitcham', 
-    'West Wickham'
+    'West Wickham',
+    'Morden'
   ]
 
   return (

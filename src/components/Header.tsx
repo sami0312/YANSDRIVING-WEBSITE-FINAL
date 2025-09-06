@@ -1,119 +1,97 @@
 'use client';
 
 import React, { useState } from "react";
-import { FaPhoneAlt, FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-scroll";
-import "../index.css"; // where we'll add the text-outline CSS
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-      <div className="container mx-auto flex justify-between items-center px-4 py-2">
-        {/* Logo on the left */}
-        <div className="flex items-center space-x-2">
-          <img
-            src="/images/YansDrivingSchool.jpg"
-            alt="Yan's Driving Logo"
-            className="h-12 w-auto"
-          />
+    <header className="fixed top-0 left-0 w-full z-50">
+      {/* Main header bar */}
+      <div className="bg-white shadow-md relative z-20">
+        <div className="container mx-auto flex justify-between items-center px-4 py-2">
+          {/* Logo */}
+          <div className="flex items-center space-x-2">
+            <img
+              src="/images/YansDrivingSchool.jpg"
+              alt="Yan's Driving Logo"
+              className="h-12 w-auto"
+            />
+          </div>
+
+          {/* Phone / WhatsApp button (desktop) */}
+          <div className="hidden md:flex justify-center flex-1">
+            <a
+              href="https://wa.me/447305556219"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg flex items-center justify-center"
+            >
+              <FaWhatsapp className="mr-2" />
+              07305556219
+            </a>
+          </div>
+
+          {/* Hamburger menu (mobile) */}
+          <div className="md:hidden flex items-center">
+            <button onClick={toggleMenu}>
+              {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
+          </div>
         </div>
 
-        {/* Hamburger menu */}
-        <div className="md:hidden">
-          <button onClick={toggleMenu}>
-            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </button>
+        {/* Conveyor belt strip */}
+        <div className="w-full overflow-hidden bg-black h-8 flex items-center relative z-10">
+          <div className="animate-marquee whitespace-nowrap flex min-w-full">
+            {Array(4)
+              .fill("100% DVSA APPROVED DRIVING INSTRUCTOR")
+              .map((text, i) => (
+                <span
+                  key={i}
+                  className="text-white font-bold text-xs sm:text-sm md:text-base mr-10"
+                >
+                  {text}
+                </span>
+              ))}
+          </div>
         </div>
-
-        {/* Desktop nav */}
-        <nav className="hidden md:flex space-x-6">
-          <Link
-            to="courses"
-            smooth={true}
-            duration={500}
-            className="cursor-pointer hover:text-blue-500"
-          >
-            Courses
-          </Link>
-          <Link
-            to="pricing"
-            smooth={true}
-            duration={500}
-            className="cursor-pointer hover:text-blue-500"
-          >
-            Pricing
-          </Link>
-          <Link
-            to="happyDrivers"
-            smooth={true}
-            duration={500}
-            className="cursor-pointer hover:text-blue-500"
-          >
-            Gallery
-          </Link>
-          <Link
-            to="contact"
-            smooth={true}
-            duration={500}
-            className="cursor-pointer hover:text-blue-500"
-          >
-            Contact
-          </Link>
-        </nav>
       </div>
+
+      {/* Desktop nav */}
+      <nav className="hidden md:flex justify-end space-x-6 items-center mt-1 px-4 bg-white shadow-md">
+        {['courses','pricing','happyDrivers','contact'].map((section) => (
+          <Link
+            key={section}
+            to={section}
+            smooth
+            duration={500}
+            className="cursor-pointer hover:text-blue-500"
+          >
+            {section.charAt(0).toUpperCase() + section.slice(1)}
+          </Link>
+        ))}
+      </nav>
 
       {/* Mobile nav */}
       {isOpen && (
         <div className="md:hidden bg-white shadow-md py-4">
           <ul className="flex flex-col items-center space-y-4">
-            <li>
-              <Link
-                to="courses"
-                smooth={true}
-                duration={500}
-                onClick={toggleMenu}
-                className="cursor-pointer hover:text-blue-500"
-              >
-                Courses
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="pricing"
-                smooth={true}
-                duration={500}
-                onClick={toggleMenu}
-                className="cursor-pointer hover:text-blue-500"
-              >
-                Pricing
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="happyDrivers"
-                smooth={true}
-                duration={500}
-                onClick={toggleMenu}
-                className="cursor-pointer hover:text-blue-500"
-              >
-                Gallery
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="contact"
-                smooth={true}
-                duration={500}
-                onClick={toggleMenu}
-                className="cursor-pointer hover:text-blue-500"
-              >
-                Contact
-              </Link>
-            </li>
+            {['courses','pricing','happyDrivers','contact'].map((section) => (
+              <li key={section}>
+                <Link
+                  to={section}
+                  smooth
+                  duration={500}
+                  onClick={toggleMenu}
+                  className="cursor-pointer hover:text-blue-500"
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       )}

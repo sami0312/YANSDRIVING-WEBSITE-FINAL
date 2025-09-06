@@ -6,12 +6,19 @@ export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(-1) // -1 = video
   const [isMobile, setIsMobile] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const [carouselTextIndex, setCarouselTextIndex] = useState(0)
 
   const slides = [
     '/images/YansDrivingImageSlideshow1.jpg',
     '/images/YansDrivingImageSlideshow2.jpg',
     '/images/YansDrivingImageSlideshow3.jpg',
     '/images/AreasCovered.webp'
+  ]
+
+  const carouselTexts = [
+    '100% DVSA APPROVED',
+    'FRIENDLY INSTRUCTORS',
+    'LEARN TO DRIVE WITH CONFIDENCE'
   ]
 
   // Detect mobile
@@ -22,10 +29,9 @@ export default function Hero() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // Handle slideshow after video ends on desktop
+  // Slideshow & video
   useEffect(() => {
     if (isMobile) return
-
     const videoEl = videoRef.current
     if (videoEl) {
       const onVideoEnd = () => {
@@ -38,6 +44,14 @@ export default function Hero() {
       videoEl.addEventListener('ended', onVideoEnd)
     }
   }, [isMobile, slides.length])
+
+  // Carousel text loop
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCarouselTextIndex((prev) => (prev + 1) % carouselTexts.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -68,30 +82,31 @@ export default function Hero() {
         ></div>
       )}
 
-      {/* Overlay content: Logo + Header text */}
-      <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-10 space-y-2">
-        <img
-          src="/images/YansDrivingSchool.jpg"
-          alt="Yan's Driving Logo"
-          className="h-16 w-auto"
-        />
-        <h1 className="text-3xl md:text-4xl font-bold text-white header-logo-text">
+      {/* Overlay text */}
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-center px-4 z-10 space-y-2">
+        {/* YAN's */}
+        <h1 className="text-5xl md:text-7xl font-extrabold text-sky-400 hero-text-outline">
           YAN's
         </h1>
-        <p className="text-xl md:text-2xl font-semibold text-white header-subtitle">
+
+        {/* DRIVING LESSONS */}
+        <p className="text-3xl md:text-4xl font-semibold text-white mt-2">
           DRIVING LESSONS
         </p>
-        <div className="flex items-center space-x-2 text-lg md:text-xl text-white">
-          <span>📞</span>
-          <span>0730 555 6219</span>
-        </div>
-        <p className="text-lg md:text-xl font-bold header-booknow mt-2">
+
+        {/* Phone number */}
+        <p className="text-2xl md:text-3xl font-bold text-white mt-1">
+          07305556219
+        </p>
+
+        {/* BOOK NOW */}
+        <p className="text-4xl md:text-5xl font-extrabold text-sky-400 hero-text-outline mt-2">
           BOOK NOW
         </p>
       </div>
 
-      {/* Buttons */}
-      <div className="container mx-auto px-4 pb-20 flex flex-col sm:flex-row gap-4 justify-center items-center z-10 relative">
+      {/* Bottom buttons (slightly raised) */}
+      <div className="container mx-auto px-4 pb-16 sm:pb-12 flex flex-col sm:flex-row gap-4 justify-center items-center z-10 relative">
         <a
           href="https://wa.me/447305556219"
           target="_blank"

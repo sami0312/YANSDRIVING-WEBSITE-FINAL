@@ -1,5 +1,3 @@
-'use client'; // ← make this a Client Component so Header works
-
 import type { Metadata } from 'next';
 import './globals.css';
 import Header from '../components/Header';
