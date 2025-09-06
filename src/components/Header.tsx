@@ -8,15 +8,11 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const beltRef = useRef<HTMLDivElement>(null)
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' })
     setIsMenuOpen(false)
   }
 
@@ -40,22 +36,18 @@ export default function Header() {
 
   return (
     <>
-      {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <div className="flex items-center space-x-2">
+            {/* Logo only on mobile and desktop */}
+            <div className="flex items-center">
               <Image
-                src="/images/YansDrivingLessons logo.jpg"
+                src="/images/YansDrivingLessons Logo.jpg"
                 alt="Yan's Driving Lessons Logo"
                 width={60}
                 height={60}
                 className="object-contain"
               />
-              <h1 className="text-xl font-semibold text-accent-blue">
-                YAN'S DRIVING LESSONS
-              </h1>
             </div>
 
             {/* Desktop Navigation */}
@@ -96,21 +88,15 @@ export default function Header() {
 
             {/* Desktop Contact Icons */}
             <div className="hidden md:flex items-center space-x-3">
-              <a
-                href="tel:07305556219"
-                className="p-2 text-accent-blue hover:bg-blue-50 rounded-full transition-colors"
-                aria-label="Call us"
-              >
+              <a href="tel:07305556219" className="p-2 text-accent-blue hover:bg-blue-50 rounded-full">
                 <Phone size={20} />
               </a>
               <a
                 href="https://wa.me/447305556219"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-green-500 text-white hover:bg-green-600 rounded-full transition-colors"
-                aria-label="WhatsApp"
+                className="p-2 bg-green-500 text-white hover:bg-green-600 rounded-full"
               >
-                {/* WhatsApp icon SVG */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -124,25 +110,22 @@ export default function Header() {
                 href="https://instagram.com/yansdrivinglessons"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-pink-600 hover:bg-pink-50 rounded-full transition-colors"
-                aria-label="Instagram"
+                className="p-2 text-pink-600 hover:bg-pink-50 rounded-full"
               >
                 <Instagram size={20} />
               </a>
               <a
                 href="mailto:info@yansdrivinglessons.com"
-                className="p-2 text-accent-blue hover:bg-blue-50 rounded-full transition-colors"
-                aria-label="Email"
+                className="p-2 text-accent-blue hover:bg-blue-50 rounded-full"
               >
                 <Mail size={20} />
               </a>
             </div>
 
-            {/* Mobile menu button */}
+            {/* Mobile Menu Button */}
             <button
               onClick={toggleMenu}
               className="md:hidden p-2 text-gray-600 hover:text-accent-blue transition-colors"
-              aria-label="Toggle menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -151,9 +134,7 @@ export default function Header() {
           {/* Mobile Navigation */}
           <div
             className={`md:hidden transition-all duration-300 ease-in-out ${
-              isMenuOpen
-                ? 'max-h-96 opacity-100'
-                : 'max-h-0 opacity-0 overflow-hidden'
+              isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
             }`}
           >
             <nav className="py-4 space-y-3 border-t border-gray-200">
@@ -182,23 +163,16 @@ export default function Header() {
                 Contact
               </button>
 
-              {/* Mobile Contact Icons */}
               <div className="flex items-center justify-center space-x-6 pt-4 border-t border-gray-200">
-                <a
-                  href="tel:07305556219"
-                  className="p-2 text-accent-blue hover:bg-blue-50 rounded-full transition-colors"
-                  aria-label="Call us"
-                >
+                <a href="tel:07305556219" className="p-2 text-accent-blue hover:bg-blue-50 rounded-full">
                   <Phone size={20} />
                 </a>
                 <a
                   href="https://wa.me/447305556219"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-green-500 text-white hover:bg-green-600 rounded-full transition-colors"
-                  aria-label="WhatsApp"
+                  className="p-2 bg-green-500 text-white hover:bg-green-600 rounded-full"
                 >
-                  {/* WhatsApp icon */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -212,15 +186,13 @@ export default function Header() {
                   href="https://instagram.com/yansdrivinglessons"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-pink-600 hover:bg-pink-50 rounded-full transition-colors"
-                  aria-label="Instagram"
+                  className="p-2 text-pink-600 hover:bg-pink-50 rounded-full"
                 >
                   <Instagram size={20} />
                 </a>
                 <a
                   href="mailto:info@yansdrivinglessons.com"
-                  className="p-2 text-accent-blue hover:bg-blue-50 rounded-full transition-colors"
-                  aria-label="Email"
+                  className="p-2 text-accent-blue hover:bg-blue-50 rounded-full"
                 >
                   <Mail size={20} />
                 </a>
@@ -243,11 +215,7 @@ export default function Header() {
 
       {/* Conveyor Belt */}
       <div className="mt-20 bg-black text-white py-2 overflow-hidden relative">
-        <div
-          ref={beltRef}
-          className="flex whitespace-nowrap text-lg font-bold"
-          style={{ minWidth: '200%' }}
-        >
+        <div ref={beltRef} className="flex whitespace-nowrap text-lg font-bold" style={{ minWidth: '200%' }}>
           {'100% DVSA APPROVED INSTRUCTOR • '.repeat(20)}
         </div>
       </div>

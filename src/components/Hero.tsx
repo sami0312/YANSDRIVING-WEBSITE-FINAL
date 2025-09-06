@@ -1,46 +1,80 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default function Hero() {
-  const [currentImage, setCurrentImage] = useState(0)
-  const images = [
+  const [currentSlide, setCurrentSlide] = useState(-1) // -1 = video
+  const [isMobile, setIsMobile] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const slides = [
     '/images/YansDrivingImageSlideshow1.jpg',
     '/images/YansDrivingImageSlideshow2.jpg',
     '/images/YansDrivingImageSlideshow3.jpg',
     '/images/AreasCovered.webp'
   ]
 
-  // Change image every 5 seconds
+  // Detect mobile
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length)
-    }, 5000)
-    return () => clearInterval(interval)
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
+
+  // Handle slideshow after video ends on desktop
+  useEffect(() => {
+    if (isMobile) return // no animation on mobile
+
+    const videoEl = videoRef.current
+    if (videoEl) {
+      const onVideoEnd = () => {
+        setCurrentSlide(0)
+        const interval = setInterval(() => {
+          setCurrentSlide((prev) => (prev + 1) % slides.length)
+        }, 5000)
+        videoEl.removeEventListener('ended', onVideoEnd)
+      }
+      videoEl.addEventListener('ended', onVideoEnd)
+    }
+  }, [isMobile, slides.length])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <section
-      id="hero"
-      className="relative h-[80vh] flex flex-col justify-end bg-cover bg-center bg-no-repeat transition-all duration-1000"
-      style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${images[currentImage]}')`
-      }}
-    >
+    <section id="hero" className="relative h-[80vh] flex flex-col justify-end overflow-hidden">
+      {/* Hero video */}
+      {currentSlide === -1 && (
+        <video
+          ref={videoRef}
+          src="/images/Happy Driver 10.mp4"
+          autoPlay
+          controls
+          playsInline
+          className="absolute inset-0 w-full h-full object-contain"
+        />
+      )}
+
+      {/* Background slideshow */}
+      {currentSlide >= 0 && (
+        <div
+          className="absolute inset-0 bg-center bg-no-repeat bg-contain transition-all duration-1000"
+          style={{
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${slides[currentSlide]}')`
+          }}
+        ></div>
+      )}
+
       {/* Overlay text */}
       <div className="absolute top-1/3 w-full text-center text-white text-3xl md:text-5xl font-bold drop-shadow-lg px-4">
         BOOK WITH YANS TODAY
       </div>
 
-      {/* Buttons container - lifted with responsive padding */}
-      <div className="container mx-auto px-4 pb-16 sm:pb-20 md:pb-28 flex flex-col sm:flex-row gap-4 justify-center items-center z-10 relative">
+      {/* Buttons */}
+      <div className="container mx-auto px-4 pb-20 flex flex-col sm:flex-row gap-4 justify-center items-center z-10 relative">
         <a
           href="https://wa.me/447305556219"
           target="_blank"
