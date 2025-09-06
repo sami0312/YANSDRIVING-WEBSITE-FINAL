@@ -39,15 +39,24 @@ export default function Header() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
-            {/* Logo only on mobile and desktop */}
-            <div className="flex items-center">
+            {/* Logo + WhatsApp on mobile */}
+            <div className="flex items-center space-x-2">
               <Image
                 src="/images/YansDrivingLessons Logo.jpg"
                 alt="Yan's Driving Lessons Logo"
-                width={60}
-                height={60}
+                width={100}
+                height={100}
                 className="object-contain"
               />
+              {/* WhatsApp number only visible on mobile */}
+              <a
+                href="https://wa.me/447305556219"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green-600 font-bold text-base md:hidden"
+              >
+                +44 730 555 6219
+              </a>
             </div>
 
             {/* Desktop Navigation */}
@@ -215,7 +224,11 @@ export default function Header() {
 
       {/* Conveyor Belt */}
       <div className="mt-20 bg-black text-white py-2 overflow-hidden relative">
-        <div ref={beltRef} className="flex whitespace-nowrap text-lg font-bold" style={{ minWidth: '200%' }}>
+        <div
+          ref={beltRef}
+          className="flex whitespace-nowrap text-lg font-bold"
+          style={{ minWidth: '200%' }}
+        >
           {'100% DVSA APPROVED INSTRUCTOR • '.repeat(20)}
         </div>
       </div>
