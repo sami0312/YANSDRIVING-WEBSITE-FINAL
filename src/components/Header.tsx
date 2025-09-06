@@ -8,6 +8,8 @@ const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  const navItems = ['courses','pricing','gallery','contact']; // changed happyDrivers -> gallery
+
   return (
     <header className="fixed top-0 left-0 w-full z-50">
       {/* Main header bar */}
@@ -62,7 +64,7 @@ const Header: React.FC = () => {
 
       {/* Desktop nav */}
       <nav className="hidden md:flex justify-end space-x-6 items-center mt-1 px-4 bg-white shadow-md">
-        {['courses','pricing','happyDrivers','contact'].map((section) => (
+        {navItems.map((section) => (
           <Link
             key={section}
             to={section}
@@ -70,7 +72,7 @@ const Header: React.FC = () => {
             duration={500}
             className="cursor-pointer hover:text-blue-500"
           >
-            {section.charAt(0).toUpperCase() + section.slice(1)}
+            {section.toUpperCase()}
           </Link>
         ))}
       </nav>
@@ -79,7 +81,7 @@ const Header: React.FC = () => {
       {isOpen && (
         <div className="md:hidden bg-white shadow-md py-4">
           <ul className="flex flex-col items-center space-y-4">
-            {['courses','pricing','happyDrivers','contact'].map((section) => (
+            {navItems.map((section) => (
               <li key={section}>
                 <Link
                   to={section}
@@ -88,7 +90,7 @@ const Header: React.FC = () => {
                   onClick={toggleMenu}
                   className="cursor-pointer hover:text-blue-500"
                 >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                  {section.toUpperCase()}
                 </Link>
               </li>
             ))}
