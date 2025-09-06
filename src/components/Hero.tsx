@@ -24,7 +24,7 @@ export default function Hero() {
 
   // Handle slideshow after video ends on desktop
   useEffect(() => {
-    if (isMobile) return // no animation on mobile
+    if (isMobile) return
 
     const videoEl = videoRef.current
     if (videoEl) {
@@ -68,9 +68,26 @@ export default function Hero() {
         ></div>
       )}
 
-      {/* Overlay text */}
-      <div className="absolute top-1/3 w-full text-center text-white text-3xl md:text-5xl font-bold drop-shadow-lg px-4">
-        BOOK WITH YANS TODAY
+      {/* Overlay content: Logo + Header text */}
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-10">
+        <img
+  src="/images/YansDrivingSchool.jpg"
+  alt="Yan's Driving Logo"
+  className="h-12 w-auto"
+/>
+        <h1 className="text-3xl md:text-4xl font-bold text-white -webkit-text-stroke-[1px] drop-none mb-1">
+          YAN's
+        </h1>
+        <p className="text-xl md:text-2xl font-semibold text-white -webkit-text-stroke-[1px] drop-none mb-2">
+          DRIVING LESSONS
+        </p>
+        <div className="flex items-center space-x-2 text-lg md:text-xl text-white mb-2 -webkit-text-stroke-[1px] drop-none">
+          <span>📞</span>
+          <span>0730 555 6219</span>
+        </div>
+        <p className="text-lg md:text-xl font-bold text-accent-blue mt-2 mb-4">
+          BOOK NOW
+        </p>
       </div>
 
       {/* Buttons */}
