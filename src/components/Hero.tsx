@@ -69,23 +69,23 @@ export default function Hero() {
       )}
 
       {/* Overlay content: Logo + Header text */}
-      <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-10">
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-10 space-y-2">
         <img
-  src="/images/YansDrivingSchool.jpg"
-  alt="Yan's Driving Logo"
-  className="h-12 w-auto"
-/>
-        <h1 className="text-3xl md:text-4xl font-bold text-white -webkit-text-stroke-[1px] drop-none mb-1">
+          src="/images/YansDrivingSchool.jpg"
+          alt="Yan's Driving Logo"
+          className="h-16 w-auto"
+        />
+        <h1 className="text-3xl md:text-4xl font-bold text-white header-logo-text">
           YAN's
         </h1>
-        <p className="text-xl md:text-2xl font-semibold text-white -webkit-text-stroke-[1px] drop-none mb-2">
+        <p className="text-xl md:text-2xl font-semibold text-white header-subtitle">
           DRIVING LESSONS
         </p>
-        <div className="flex items-center space-x-2 text-lg md:text-xl text-white mb-2 -webkit-text-stroke-[1px] drop-none">
+        <div className="flex items-center space-x-2 text-lg md:text-xl text-white">
           <span>📞</span>
           <span>0730 555 6219</span>
         </div>
-        <p className="text-lg md:text-xl font-bold text-accent-blue mt-2 mb-4">
+        <p className="text-lg md:text-xl font-bold header-booknow mt-2">
           BOOK NOW
         </p>
       </div>
