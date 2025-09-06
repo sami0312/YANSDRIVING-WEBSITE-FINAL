@@ -59,7 +59,7 @@ export default function Hero() {
   }
 
   return (
-    <section id="hero" className="relative h-[80vh] flex flex-col justify-end overflow-hidden">
+    <section id="hero" className="relative h-[80vh] flex flex-col justify-start overflow-hidden">
       {/* Hero video */}
       {currentSlide === -1 && (
         <video
@@ -83,7 +83,7 @@ export default function Hero() {
       )}
 
       {/* Overlay text */}
-      <div className="absolute top-1/2 transform -translate-x-1/2 translate-y-1/4 left-1/2 flex flex-col items-center text-center px-4 z-10 space-y-2">
+      <div className="absolute top-[calc(2.5rem+2rem)] left-1/2 -translate-x-1/2 flex flex-col items-center text-center px-4 z-10 space-y-2">
         {/* YAN's */}
         <h1 className="text-5xl md:text-7xl font-extrabold text-sky-400 hero-text-outline whitespace-nowrap">
           YAN's

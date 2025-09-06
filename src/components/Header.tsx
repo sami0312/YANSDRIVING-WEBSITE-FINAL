@@ -20,7 +20,7 @@ const Header: React.FC = () => {
             <img
               src="/images/YansDrivingSchool.jpg"
               alt="Yan's Driving Logo"
-              className="h-12 w-auto"
+              className="h-16 w-auto"  // larger logo
             />
           </div>
 
@@ -37,8 +37,17 @@ const Header: React.FC = () => {
             </a>
           </div>
 
-          {/* Hamburger menu (mobile) */}
-          <div className="md:hidden flex items-center">
+          {/* Mobile: phone + hamburger */}
+          <div className="md:hidden flex items-center space-x-2">
+            <a
+              href="https://wa.me/447305556219"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-500 hover:bg-green-600 text-white font-bold px-3 py-2 rounded-lg flex items-center justify-center text-sm"
+            >
+              <FaWhatsapp className="mr-1" />
+              07305556219
+            </a>
             <button onClick={toggleMenu}>
               {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
@@ -70,7 +79,6 @@ const Header: React.FC = () => {
             to={section}
             smooth
             duration={500}
-            offset={-80} // optional: adjust for fixed header height
             className="cursor-pointer hover:text-blue-500"
           >
             {section.toUpperCase()}
@@ -88,7 +96,6 @@ const Header: React.FC = () => {
                   to={section}
                   smooth
                   duration={500}
-                  offset={-80} // adjust for fixed header height
                   onClick={toggleMenu}
                   className="cursor-pointer hover:text-blue-500"
                 >
