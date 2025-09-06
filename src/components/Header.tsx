@@ -1,178 +1,135 @@
-'use client'
+import React, { useState } from "react";
+import { FaPhoneAlt, FaBars, FaTimes } from "react-icons/fa";
+import { Link } from "react-scroll";
+import "../index.css"; // where we'll add the text-outline CSS
 
-import { useState, useEffect, useRef } from 'react'
-import { Menu, X, Phone, Instagram, Mail } from 'lucide-react'
-import Image from 'next/image'
+const Header: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const beltRef = useRef<HTMLDivElement>(null)
-
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) element.scrollIntoView({ behavior: 'smooth' })
-    setIsMenuOpen(false)
-  }
-
-  // Conveyor belt animation
-  useEffect(() => {
-    const belt = beltRef.current
-    if (!belt) return
-    let start = 0
-    let animationFrame: number
-
-    const animate = () => {
-      start -= 1
-      if (start <= -belt.scrollWidth / 2) start = 0
-      belt.style.transform = `translateX(${start}px)`
-      animationFrame = requestAnimationFrame(animate)
-    }
-
-    animate()
-    return () => cancelAnimationFrame(animationFrame)
-  }, [])
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-24">
-            
-            {/* Left: New Logo */}
-            <div className="flex items-center space-x-2">
-              <Image
-                src="/images/YansDrivingLogoNew.png"
-                alt="Yan's Driving Lessons Logo"
-                width={80}
-                height={80}
-                className="object-contain"
-              />
-            </div>
-
-            {/* Center Section - Styled text */}
-            <div className="flex flex-col items-center text-center flex-1">
-              <h1 className="text-2xl font-extrabold text-sky-500 drop-shadow-[2px_2px_0px_black]">
-                YAN&apos;s
-              </h1>
-              <p className="text-sm tracking-wide">DRIVING LESSONS</p>
-
-              {/* Phone number with icon */}
-              <a
-                href="tel:+447305556219"
-                className="flex items-center gap-2 text-lg font-semibold justify-center mt-1"
-              >
-                <Phone className="w-5 h-5 text-green-600" />
-                <span>0730 555 6219</span>
-              </a>
-
-              {/* Book Now */}
-              <p className="text-sky-500 font-extrabold drop-shadow-[2px_2px_0px_black] mt-1">
-                BOOK NOW
-              </p>
-            </div>
-
-            {/* Right: Mobile Menu Button */}
-            <button
-              onClick={toggleMenu}
-              className="md:hidden p-2 text-gray-600 hover:text-accent-blue transition-colors"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-6">
-              <button onClick={() => scrollToSection('hero')} className="hover:text-accent-blue">
-                Home
-              </button>
-              <button onClick={() => scrollToSection('courses')} className="hover:text-accent-blue">
-                Courses & Prices
-              </button>
-              <button onClick={() => scrollToSection('testimonials')} className="hover:text-accent-blue">
-                Testimonials
-              </button>
-              <button onClick={() => scrollToSection('happy-drivers')} className="hover:text-accent-blue">
-                Gallery
-              </button>
-              <button onClick={() => scrollToSection('contact')} className="hover:text-accent-blue">
-                Contact
-              </button>
-              <a
-                href="https://wa.me/447305556219"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
-              >
-                Book Online
-              </a>
-            </nav>
-
-            {/* Desktop Contact Icons */}
-            <div className="hidden md:flex items-center space-x-3 ml-4">
-              <a href="tel:07305556219" className="p-2 text-accent-blue hover:bg-blue-50 rounded-full">
-                <Phone size={20} />
-              </a>
-              <a href="https://wa.me/447305556219" target="_blank" rel="noopener noreferrer"
-                 className="p-2 bg-green-500 text-white hover:bg-green-600 rounded-full">
-                {/* WhatsApp Icon */}
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.52 3.48A11.937 11.937 0 0012 .001C5.373.001 0 5.373 0 12c0 2.117.55 4.08 1.515 5.808L0 24l6.353-1.515A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12 0-3.182-1.24-6.178-3.48-8.52zM12 21.75c-2.042 0-3.937-.63-5.507-1.695l-.392-.238-3.77.896.898-3.708-.253-.407A9.72 9.72 0 012.25 12C2.25 6.624 6.624 2.25 12 2.25c2.525 0 4.874.927 6.684 2.607C21.073 6.126 22 8.475 22 12c0 5.376-4.624 9.75-10 9.75z"/>
-                </svg>
-              </a>
-              <a href="https://instagram.com/yansdrivinglessons" target="_blank" rel="noopener noreferrer"
-                 className="p-2 text-pink-600 hover:bg-pink-50 rounded-full">
-                <Instagram size={20} />
-              </a>
-              <a href="mailto:info@yansdrivinglessons.com"
-                 className="p-2 text-accent-blue hover:bg-blue-50 rounded-full">
-                <Mail size={20} />
-              </a>
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          <div className={`md:hidden transition-all duration-300 ease-in-out ${
-            isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
-          }`}>
-            <nav className="py-4 space-y-3 border-t border-gray-200">
-              <button onClick={() => scrollToSection('hero')} className="block px-4 py-2 hover:text-accent-blue">Home</button>
-              <button onClick={() => scrollToSection('courses')} className="block px-4 py-2 hover:text-accent-blue">Courses & Prices</button>
-              <button onClick={() => scrollToSection('testimonials')} className="block px-4 py-2 hover:text-accent-blue">Testimonials</button>
-              <button onClick={() => scrollToSection('happy-drivers')} className="block px-4 py-2 hover:text-accent-blue">Gallery</button>
-              <button onClick={() => scrollToSection('contact')} className="block px-4 py-2 hover:text-accent-blue">Contact</button>
-
-              <div className="flex items-center justify-center space-x-6 pt-4 border-t border-gray-200">
-                <a href="tel:07305556219" className="p-2 text-accent-blue hover:bg-blue-50 rounded-full"><Phone size={20} /></a>
-                <a href="https://wa.me/447305556219" target="_blank" rel="noopener noreferrer"
-                   className="p-2 bg-green-500 text-white hover:bg-green-600 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.52 3.48A11.937 11.937 0 0012 .001C5.373.001 0 5.373 0 12c0 2.117.55 4.08 1.515 5.808L0 24l6.353-1.515A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12 0-3.182-1.24-6.178-3.48-8.52zM12 21.75c-2.042 0-3.937-.63-5.507-1.695l-.392-.238-3.77.896.898-3.708-.253-.407A9.72 9.72 0 012.25 12C2.25 6.624 6.624 2.25 12 2.25c2.525 0 4.874.927 6.684 2.607C21.073 6.126 22 8.475 22 12c0 5.376-4.624 9.75-10 9.75z"/>
-                  </svg>
-                </a>
-                <a href="https://instagram.com/yansdrivinglessons" target="_blank" rel="noopener noreferrer"
-                   className="p-2 text-pink-600 hover:bg-pink-50 rounded-full"><Instagram size={20} /></a>
-                <a href="mailto:info@yansdrivinglessons.com"
-                   className="p-2 text-accent-blue hover:bg-blue-50 rounded-full"><Mail size={20} /></a>
-              </div>
-
-              <div className="px-4 pt-4">
-                <a href="https://wa.me/447305556219" target="_blank" rel="noopener noreferrer"
-                   className="btn-primary w-full text-center">
-                  Book Online
-                </a>
-              </div>
-            </nav>
-          </div>
+    <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+      <div className="container mx-auto flex justify-between items-center px-4 py-2">
+        {/* Logo on the left */}
+        <div className="flex items-center space-x-2">
+          <img
+            src="/images/YansDrivingLogoNew.jpg"
+            alt="Yan's Driving Logo"
+            className="h-12 w-auto"
+          />
         </div>
-      </header>
 
-      {/* Conveyor Belt */}
-      <div className="mt-24 bg-black text-white py-2 overflow-hidden relative">
-        <div ref={beltRef} className="flex whitespace-nowrap text-lg font-bold" style={{ minWidth: '200%' }}>
-          {'100% DVSA APPROVED INSTRUCTOR • '.repeat(20)}
+        {/* Middle content */}
+        <div className="flex flex-col items-center text-center flex-grow">
+          <h1 className="text-2xl md:text-3xl font-bold text-outline">
+            YAN's
+          </h1>
+          <p className="text-sm md:text-base font-bold">DRIVING LESSONS</p>
+          <div className="flex items-center space-x-2 mt-1">
+            <FaPhoneAlt className="text-green-500" />
+            <span className="font-medium">0730 555 6219</span>
+          </div>
+          <p className="text-outline text-lg mt-2">BOOK NOW</p>
         </div>
+
+        {/* Hamburger menu */}
+        <div className="md:hidden">
+          <button onClick={toggleMenu}>
+            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
+        </div>
+
+        {/* Desktop nav */}
+        <nav className="hidden md:flex space-x-6">
+          <Link
+            to="courses"
+            smooth={true}
+            duration={500}
+            className="cursor-pointer hover:text-blue-500"
+          >
+            Courses
+          </Link>
+          <Link
+            to="pricing"
+            smooth={true}
+            duration={500}
+            className="cursor-pointer hover:text-blue-500"
+          >
+            Pricing
+          </Link>
+          <Link
+            to="happyDrivers"
+            smooth={true}
+            duration={500}
+            className="cursor-pointer hover:text-blue-500"
+          >
+            Gallery
+          </Link>
+          <Link
+            to="contact"
+            smooth={true}
+            duration={500}
+            className="cursor-pointer hover:text-blue-500"
+          >
+            Contact
+          </Link>
+        </nav>
       </div>
-    </>
-  )
-}
+
+      {/* Mobile nav */}
+      {isOpen && (
+        <div className="md:hidden bg-white shadow-md py-4">
+          <ul className="flex flex-col items-center space-y-4">
+            <li>
+              <Link
+                to="courses"
+                smooth={true}
+                duration={500}
+                onClick={toggleMenu}
+                className="cursor-pointer hover:text-blue-500"
+              >
+                Courses
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="pricing"
+                smooth={true}
+                duration={500}
+                onClick={toggleMenu}
+                className="cursor-pointer hover:text-blue-500"
+              >
+                Pricing
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="happyDrivers"
+                smooth={true}
+                duration={500}
+                onClick={toggleMenu}
+                className="cursor-pointer hover:text-blue-500"
+              >
+                Gallery
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="contact"
+                smooth={true}
+                duration={500}
+                onClick={toggleMenu}
+                className="cursor-pointer hover:text-blue-500"
+              >
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Header;

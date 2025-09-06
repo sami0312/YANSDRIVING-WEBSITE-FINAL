@@ -53,4 +53,25 @@ body {
   .btn-outline {
     @apply border-2 border-accent-blue text-accent-blue hover:bg-accent-blue hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300;
   }
+
+  /* ===== Custom header text styles ===== */
+  .header-logo-text {
+    font-weight: 800;
+    color: var(--yan-blue);
+    -webkit-text-stroke: 1px black; /* thin black outline */
+    text-stroke: 1px black; /* for wider support */
+  }
+
+  .header-subtitle {
+    font-weight: 700;
+    color: #000;
+  }
+
+  .header-booknow {
+    font-weight: 800;
+    color: var(--yan-blue);
+    -webkit-text-stroke: 1px black;
+    text-stroke: 1px black;
+    margin-top: 4px; /* moves it slightly up from the black bar */
+  }
 }
