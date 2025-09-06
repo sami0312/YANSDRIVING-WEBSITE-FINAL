@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 
 export default function Hero() {
-  const [currentSlide, setCurrentSlide] = useState(-1)
+  const [currentSlide, setCurrentSlide] = useState(-1) // -1 = video
   const [isMobile, setIsMobile] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [carouselTextIndex, setCarouselTextIndex] = useState(0)
@@ -21,6 +21,7 @@ export default function Hero() {
     'LEARN TO DRIVE WITH CONFIDENCE'
   ]
 
+  // Detect mobile
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768)
     handleResize()
@@ -28,6 +29,7 @@ export default function Hero() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  // Slideshow & video
   useEffect(() => {
     if (isMobile) return
     const videoEl = videoRef.current
@@ -43,6 +45,7 @@ export default function Hero() {
     }
   }, [isMobile, slides.length])
 
+  // Carousel text loop
   useEffect(() => {
     const interval = setInterval(() => {
       setCarouselTextIndex((prev) => (prev + 1) % carouselTexts.length)
@@ -80,30 +83,30 @@ export default function Hero() {
       )}
 
       {/* Overlay text */}
-      <div className="absolute top-1/2 transform -translate-y-1/2 flex flex-col items-center text-center px-4 z-10 space-y-2">
+      <div className="absolute top-1/2 transform -translate-x-1/2 translate-y-1/4 left-1/2 flex flex-col items-center text-center px-4 z-10 space-y-2">
         {/* YAN's */}
-        <h1 className="text-5xl md:text-7xl font-extrabold text-sky-400 hero-text-outline mt-12">
+        <h1 className="text-5xl md:text-7xl font-extrabold text-sky-400 hero-text-outline whitespace-nowrap">
           YAN's
         </h1>
 
-        {/* DRIVING LESSONS (one line) */}
+        {/* DRIVING LESSONS */}
         <p className="text-3xl md:text-4xl font-semibold text-white mt-2 whitespace-nowrap">
           DRIVING LESSONS
         </p>
 
         {/* Phone number */}
-        <p className="text-2xl md:text-3xl font-bold text-white mt-1">
+        <p className="text-2xl md:text-3xl font-bold text-white mt-1 whitespace-nowrap">
           07305556219
         </p>
 
         {/* BOOK NOW */}
-        <p className="text-4xl md:text-5xl font-extrabold text-sky-400 hero-text-outline mt-2">
+        <p className="text-4xl md:text-5xl font-extrabold text-sky-400 hero-text-outline mt-2 whitespace-nowrap">
           BOOK NOW
         </p>
       </div>
 
-      {/* Bottom buttons */}
-      <div className="container mx-auto px-4 pb-20 sm:pb-16 flex flex-col sm:flex-row gap-4 justify-center items-center z-10 relative">
+      {/* Bottom buttons (slightly raised) */}
+      <div className="container mx-auto px-4 pb-16 sm:pb-12 flex flex-col sm:flex-row gap-4 justify-center items-center z-10 relative">
         <a
           href="https://wa.me/447305556219"
           target="_blank"

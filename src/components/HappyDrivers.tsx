@@ -1,6 +1,6 @@
 'use client'
 
-export default function HappyDrivers() {
+export default function Gallery() {
   const media = [
     "Happy Driver 1.jpg",
     "Happy Driver 2.jpg",
@@ -15,10 +15,10 @@ export default function HappyDrivers() {
   ]
 
   return (
-    <section id="happy-drivers" className="py-16 bg-gray-100">
+    <section id="gallery" className="py-16 bg-gray-100">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-8">
-          Happy Drivers
+          Gallery
         </h2>
 
         <div className="flex flex-wrap gap-4 justify-center items-start overflow-x-auto">
@@ -35,7 +35,7 @@ export default function HappyDrivers() {
                 ) : (
                   <img
                     src={`/images/${item}`}
-                    alt={`Happy Driver ${index + 1}`}
+                    alt={`Gallery item ${index + 1}`}
                     className="w-full h-full object-cover"
                   />
                 )}

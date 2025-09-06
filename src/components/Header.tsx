@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const navItems = ['courses','pricing','gallery','contact']; // changed happyDrivers -> gallery
+  const navItems = ['courses','pricing','gallery','contact'];
 
   return (
     <header className="fixed top-0 left-0 w-full z-50">
@@ -70,6 +70,7 @@ const Header: React.FC = () => {
             to={section}
             smooth
             duration={500}
+            offset={-80} // optional: adjust for fixed header height
             className="cursor-pointer hover:text-blue-500"
           >
             {section.toUpperCase()}
@@ -87,6 +88,7 @@ const Header: React.FC = () => {
                   to={section}
                   smooth
                   duration={500}
+                  offset={-80} // adjust for fixed header height
                   onClick={toggleMenu}
                   className="cursor-pointer hover:text-blue-500"
                 >
