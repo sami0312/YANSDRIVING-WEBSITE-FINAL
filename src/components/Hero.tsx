@@ -59,7 +59,7 @@ export default function Hero() {
   }
 
   return (
-    <section id="hero" className="relative h-[80vh] flex flex-col justify-start overflow-hidden">
+    <section id="hero" className="relative h-[80vh] flex flex-col justify-end overflow-hidden">
       {/* Hero video */}
       {currentSlide === -1 && (
         <video
@@ -83,30 +83,32 @@ export default function Hero() {
       )}
 
       {/* Overlay text */}
-      <div className="absolute top-[calc(2.5rem+2rem)] left-1/2 -translate-x-1/2 flex flex-col items-center text-center px-4 z-10 space-y-2">
+      <div className="absolute top-[6rem] left-1/2 -translate-x-1/2 flex flex-col items-center text-center px-4 z-10 space-y-2">
         {/* YAN's */}
-        <h1 className="text-5xl md:text-7xl font-extrabold text-sky-400 hero-text-outline whitespace-nowrap">
+        <h1 className="text-5xl md:text-7xl font-extrabold text-sky-600 hero-text-outline whitespace-nowrap">
           YAN's
         </h1>
 
         {/* DRIVING LESSONS */}
-        <p className="text-3xl md:text-4xl font-semibold text-white mt-2 whitespace-nowrap">
+        <p className="text-3xl md:text-4xl font-semibold text-white mt-2 whitespace-nowrap"
+           style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>
           DRIVING LESSONS
         </p>
 
         {/* Phone number */}
-        <p className="text-2xl md:text-3xl font-bold text-white mt-1 whitespace-nowrap">
+        <p className="text-2xl md:text-3xl font-bold text-white mt-1 whitespace-nowrap"
+           style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>
           07305556219
         </p>
 
         {/* BOOK NOW */}
-        <p className="text-4xl md:text-5xl font-extrabold text-sky-400 hero-text-outline mt-2 whitespace-nowrap">
+        <p className="text-4xl md:text-5xl font-extrabold text-sky-600 hero-text-outline mt-2 whitespace-nowrap">
           BOOK NOW
         </p>
       </div>
 
-      {/* Bottom buttons (slightly raised) */}
-      <div className="container mx-auto px-4 pb-16 sm:pb-12 flex flex-col sm:flex-row gap-4 justify-center items-center z-10 relative">
+      {/* Bottom buttons (fixed at bottom) */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col sm:flex-row gap-4 justify-center items-center z-10">
         <a
           href="https://wa.me/447305556219"
           target="_blank"
