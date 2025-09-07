@@ -21,7 +21,6 @@ export default function Hero() {
     'LEARN TO DRIVE WITH CONFIDENCE'
   ]
 
-  // Detect mobile
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768)
     handleResize()
@@ -29,7 +28,6 @@ export default function Hero() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // Slideshow & video
   useEffect(() => {
     if (isMobile) return
     const videoEl = videoRef.current
@@ -45,7 +43,6 @@ export default function Hero() {
     }
   }, [isMobile, slides.length])
 
-  // Carousel text loop
   useEffect(() => {
     const interval = setInterval(() => {
       setCarouselTextIndex((prev) => (prev + 1) % carouselTexts.length)
@@ -83,24 +80,24 @@ export default function Hero() {
       )}
 
       {/* Overlay text */}
-      <div className="absolute top-[25%] left-1/2 -translate-x-1/2 flex flex-col items-center text-center px-4 z-10 space-y-2">
+      <div className="absolute top-[20%] left-1/2 -translate-x-1/2 flex flex-col items-center text-center px-4 z-10 space-y-2">
         {/* BOOK NOW */}
-        <h1 className="text-5xl md:text-6xl font-extrabold text-sky-400 hero-text-outline-black whitespace-nowrap">
+        <h1 className="text-5xl md:text-6xl font-bold text-sky-400 hero-text-outline whitespace-nowrap">
           BOOK NOW
         </h1>
 
         {/* WITH */}
-        <p className="text-2xl md:text-3xl font-semibold text-white hero-text-outline-black mt-1">
+        <p className="text-3xl md:text-4xl font-semibold text-white hero-text-outline mt-1">
           WITH
         </p>
 
         {/* YANS DRIVING */}
-        <h2 className="text-5xl md:text-6xl font-extrabold text-sky-400 hero-text-outline-black whitespace-nowrap mt-1">
+        <h2 className="text-5xl md:text-6xl font-bold text-sky-400 hero-text-outline whitespace-nowrap mt-1">
           YANS DRIVING
         </h2>
       </div>
 
-      {/* Bottom buttons (side by side) */}
+      {/* Bottom buttons */}
       <div className="container mx-auto px-4 pb-8 flex flex-row gap-4 justify-center items-center z-10 relative">
         <a
           href="https://wa.me/447305556219"
