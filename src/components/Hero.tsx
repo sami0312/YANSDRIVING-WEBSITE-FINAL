@@ -83,43 +83,36 @@ export default function Hero() {
       )}
 
       {/* Overlay text */}
-      <div className="absolute top-[6rem] left-1/2 -translate-x-1/2 flex flex-col items-center text-center px-4 z-10 space-y-2">
-        {/* YAN's */}
-        <h1 className="text-5xl md:text-7xl font-extrabold text-sky-600 hero-text-outline whitespace-nowrap">
-          YAN's
+      <div className="absolute top-[25%] left-1/2 -translate-x-1/2 flex flex-col items-center text-center px-4 z-10 space-y-2">
+        {/* BOOK NOW */}
+        <h1 className="text-5xl md:text-6xl font-extrabold text-sky-400 hero-text-outline-black whitespace-nowrap">
+          BOOK NOW
         </h1>
 
-        {/* DRIVING LESSONS */}
-        <p className="text-3xl md:text-4xl font-semibold text-white mt-2 whitespace-nowrap"
-           style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>
-          DRIVING LESSONS
+        {/* WITH */}
+        <p className="text-2xl md:text-3xl font-semibold text-white hero-text-outline-black mt-1">
+          WITH
         </p>
 
-        {/* Phone number */}
-        <p className="text-2xl md:text-3xl font-bold text-white mt-1 whitespace-nowrap"
-           style={{ textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>
-          07305556219
-        </p>
-
-        {/* BOOK NOW */}
-        <p className="text-4xl md:text-5xl font-extrabold text-sky-600 hero-text-outline mt-2 whitespace-nowrap">
-          BOOK NOW
-        </p>
+        {/* YANS DRIVING */}
+        <h2 className="text-5xl md:text-6xl font-extrabold text-sky-400 hero-text-outline-black whitespace-nowrap mt-1">
+          YANS DRIVING
+        </h2>
       </div>
 
-      {/* Bottom buttons (fixed at bottom) */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col sm:flex-row gap-4 justify-center items-center z-10">
+      {/* Bottom buttons (side by side) */}
+      <div className="container mx-auto px-4 pb-8 flex flex-row gap-4 justify-center items-center z-10 relative">
         <a
           href="https://wa.me/447305556219"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-primary text-lg px-8 py-4 min-w-[200px]"
+          className="bg-sky-400 hover:bg-sky-500 text-white text-lg px-8 py-4 rounded-lg min-w-[200px] text-center font-bold"
         >
           Book Now
         </a>
         <button
           onClick={() => scrollToSection('courses')}
-          className="btn-outline text-lg px-8 py-4 min-w-[200px] border-white text-white hover:bg-white hover:text-accent-blue"
+          className="btn-outline text-lg px-8 py-4 min-w-[200px] border-white text-white hover:bg-white hover:text-accent-blue rounded-lg"
         >
           View Courses
         </button>
