@@ -14,6 +14,9 @@ export default function Gallery() {
     "Happy Driver 10.mp4"
   ]
 
+  const images = media.filter((item) => !item.endsWith(".mp4"))
+  const video = media.find((item) => item.endsWith(".mp4"))
+
   return (
     <section id="gallery" className="py-16 bg-gray-100">
       <div className="container mx-auto px-4">
@@ -21,24 +24,37 @@ export default function Gallery() {
           Gallery
         </h2>
 
-        <div className="flex flex-wrap gap-4 justify-center items-start overflow-x-auto">
-          {media.map((item, index) => {
-            const isVideo = item.endsWith(".mp4")
+        {/* Circle layout */}
+        <div className="relative flex items-center justify-center w-full h-[600px]">
+          {/* Center video */}
+          <div className="w-40 h-40 md:w-64 md:h-64 rounded-lg overflow-hidden shadow-lg z-10">
+            <video
+              src={`/images/${video}`}
+              controls
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Images positioned in a circle */}
+          {images.map((item, index) => {
+            const angle = (index / images.length) * 2 * Math.PI
+            const radius = 200 // distance from center
+            const x = Math.cos(angle) * radius
+            const y = Math.sin(angle) * radius
+
             return (
-              <div key={index} className="flex-shrink-0 w-64 h-64 rounded-lg overflow-hidden shadow-lg">
-                {isVideo ? (
-                  <video
-                    src={`/images/${item}`}
-                    controls
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <img
-                    src={`/images/${item}`}
-                    alt={`Gallery item ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                )}
+              <div
+                key={index}
+                className="absolute w-20 h-20 md:w-32 md:h-32 rounded-lg overflow-hidden shadow-lg"
+                style={{
+                  transform: `translate(${x}px, ${y}px)`
+                }}
+              >
+                <img
+                  src={`/images/${item}`}
+                  alt={`Gallery item ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
               </div>
             )
           })}
