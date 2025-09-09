@@ -1,7 +1,7 @@
 'use client'
 
 export default function Gallery() {
-  const media = [
+  const images = [
     "Happy Driver 1.jpg",
     "Happy Driver 2.jpg",
     "Happy Driver 3.jpg",
@@ -11,11 +11,9 @@ export default function Gallery() {
     "Happy Driver 7.jpg",
     "Happy Driver 8.jpg",
     "Happy Driver 9.jpg",
-    "Happy Driver 10.mp4"
   ]
 
-  const images = media.filter((item) => !item.endsWith(".mp4"))
-  const video = media.find((item) => item.endsWith(".mp4"))
+  const video = "Happy Driver 10.mp4"
 
   return (
     <section id="gallery" className="py-16 bg-gray-100">
@@ -24,10 +22,22 @@ export default function Gallery() {
           Gallery
         </h2>
 
-        {/* Circle layout */}
-        <div className="relative flex items-center justify-center w-full h-[600px]">
+        <div className="
+          grid grid-cols-3 grid-rows-3 gap-2 
+          max-w-3xl mx-auto
+        ">
+          {images.slice(0, 4).map((item, index) => (
+            <div key={index} className="rounded-lg overflow-hidden shadow-lg">
+              <img
+                src={`/images/${item}`}
+                alt={`Gallery item ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+
           {/* Center video */}
-          <div className="w-40 h-40 md:w-64 md:h-64 rounded-lg overflow-hidden shadow-lg z-10">
+          <div className="rounded-lg overflow-hidden shadow-lg">
             <video
               src={`/images/${video}`}
               controls
@@ -35,29 +45,15 @@ export default function Gallery() {
             />
           </div>
 
-          {/* Images positioned in a circle */}
-          {images.map((item, index) => {
-            const angle = (index / images.length) * 2 * Math.PI
-            const radius = 200 // distance from center
-            const x = Math.cos(angle) * radius
-            const y = Math.sin(angle) * radius
-
-            return (
-              <div
-                key={index}
-                className="absolute w-20 h-20 md:w-32 md:h-32 rounded-lg overflow-hidden shadow-lg"
-                style={{
-                  transform: `translate(${x}px, ${y}px)`
-                }}
-              >
-                <img
-                  src={`/images/${item}`}
-                  alt={`Gallery item ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            )
-          })}
+          {images.slice(4).map((item, index) => (
+            <div key={index + 4} className="rounded-lg overflow-hidden shadow-lg">
+              <img
+                src={`/images/${item}`}
+                alt={`Gallery item ${index + 5}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>

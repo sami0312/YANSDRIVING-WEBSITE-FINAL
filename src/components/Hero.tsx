@@ -93,7 +93,7 @@ export default function Hero() {
 
         {/* YANS DRIVING */}
         <h2 className="text-5xl md:text-6xl font-bold text-sky-400 hero-text-outline whitespace-nowrap mt-1">
-          YANS DRIVING
+          YAN'S DRIVING
         </h2>
       </div>
 
