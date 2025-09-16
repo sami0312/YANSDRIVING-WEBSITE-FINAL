@@ -30,7 +30,7 @@ export default function AreasCovered() {
             Areas Covered & Test Centres
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Yans Driving Lessons covers most areas in South East London and offers convenient pick-up locations. We guarantee a test at Mitcham within 24 hours!
+            Yans Driving Lessons covers most areas in South East London and offers convenient pick-up locations. We guarantee a test at Mitcham once Yans has assesed your driving!
           </p>
         </div>
 

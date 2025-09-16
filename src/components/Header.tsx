@@ -1,49 +1,77 @@
 'use client';
 
-import React, { useState } from "react";
-import { FaBars, FaTimes, FaWhatsapp } from "react-icons/fa";
-import { Link } from "react-scroll";
+import { useState } from 'react';
+import { FaWhatsapp, FaBars, FaTimes } from 'react-icons/fa';
+import { Link } from 'react-scroll';
 
-const Header: React.FC = () => {
+const navItems = ['Home', 'Gallery', 'Courses', 'Contact'];
+
+export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const navItems = ['courses','pricing','gallery','contact'];
-
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
-      {/* Main header bar */}
-      <div className="bg-white shadow-md relative z-20">
+    <header className="relative z-20">
+      {/* Top WhatsApp bar */}
+      <div className="w-full bg-green-500 flex justify-center py-1 text-white font-bold">
+        <a
+          href="https://wa.me/447305556219"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center space-x-2"
+        >
+          <FaWhatsapp />
+          <span>07305556219</span>
+        </a>
+      </div>
+
+      {/* Main header */}
+      <div className="bg-white shadow-md">
         <div className="container mx-auto flex justify-between items-center px-4 py-2">
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <img
               src="/images/YansDrivingSchool.jpg"
               alt="Yan's Driving Logo"
-              className="h-16 w-auto"  // larger logo
+              className="h-16 w-auto"
             />
           </div>
 
-          {/* Phone / WhatsApp button (desktop) */}
-          <div className="hidden md:flex justify-center flex-1">
+          {/* Desktop nav */}
+          <nav className="hidden md:flex space-x-8">
+            {navItems.map((section) => (
+              <Link
+                key={section}
+                to={section}
+                smooth
+                duration={500}
+                className="cursor-pointer text-gray-800 font-medium hover:text-gray-600"
+              >
+                {section}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Desktop WhatsApp */}
+          <div className="hidden md:flex">
             <a
               href="https://wa.me/447305556219"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg flex items-center justify-center"
+              className="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg flex items-center"
             >
               <FaWhatsapp className="mr-2" />
               07305556219
             </a>
           </div>
 
-          {/* Mobile: phone + hamburger */}
+          {/* Mobile: WhatsApp + hamburger */}
           <div className="md:hidden flex items-center space-x-2">
             <a
               href="https://wa.me/447305556219"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-500 hover:bg-green-600 text-white font-bold px-3 py-2 rounded-lg flex items-center justify-center text-sm"
+              className="bg-green-500 hover:bg-green-600 text-white font-bold px-3 py-2 rounded-lg flex items-center text-sm"
             >
               <FaWhatsapp className="mr-1" />
               07305556219
@@ -58,7 +86,7 @@ const Header: React.FC = () => {
         <div className="w-full overflow-hidden bg-black h-8 flex items-center relative z-10">
           <div className="animate-marquee whitespace-nowrap flex min-w-full">
             {Array(4)
-              .fill("100% DVSA APPROVED DRIVING INSTRUCTOR")
+              .fill('100% DVSA APPROVED DRIVING INSTRUCTOR')
               .map((text, i) => (
                 <span
                   key={i}
@@ -70,44 +98,6 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Desktop nav */}
-      <nav className="hidden md:flex justify-end space-x-6 items-center mt-1 px-4 bg-white shadow-md">
-        {navItems.map((section) => (
-          <Link
-            key={section}
-            to={section}
-            smooth
-            duration={500}
-            className="cursor-pointer hover:text-blue-500"
-          >
-            {section.toUpperCase()}
-          </Link>
-        ))}
-      </nav>
-
-      {/* Mobile nav */}
-      {isOpen && (
-        <div className="md:hidden bg-white shadow-md py-4">
-          <ul className="flex flex-col items-center space-y-4">
-            {navItems.map((section) => (
-              <li key={section}>
-                <Link
-                  to={section}
-                  smooth
-                  duration={500}
-                  onClick={toggleMenu}
-                  className="cursor-pointer hover:text-blue-500"
-                >
-                  {section.toUpperCase()}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </header>
   );
-};
-
-export default Header;
+}
