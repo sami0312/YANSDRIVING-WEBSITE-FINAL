@@ -17,7 +17,7 @@ export default function Courses() {
       icon: <Car className="w-12 h-12 text-accent-blue mb-4" />,
       description:
         'You will be taught the most efficient and quick techniques to get you on the road.',
-      pricing: [{ duration: '10 Hour Block (Minimum)', price: '£400 (£40/hr)' }]
+      pricing: [{ duration: '10 Hour Block (Minimum)', price: '£450 (£45/hr)' }]
     },
     {
       id: 'manual',
@@ -25,7 +25,7 @@ export default function Courses() {
       icon: <Cog className="w-12 h-12 text-accent-green mb-4" />,
       description:
         'You will be taught the most efficient and quick techniques to get you on the road.',
-      pricing: [{ duration: '10 Hour Block (Minimum)', price: '£380 (£38/hr)' }]
+      pricing: [{ duration: '10 Hour Block (Minimum)', price: '£400 (£40/hr)' }]
     }
   ]
 

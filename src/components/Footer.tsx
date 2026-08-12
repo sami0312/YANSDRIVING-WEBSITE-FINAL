@@ -107,10 +107,10 @@ export default function Footer() {
                 <Mail className="w-4 h-4 mr-3 text-accent-blue flex-shrink-0" />
                 <div>
                   <a 
-                    href="mailto:info@yansdrivinglessons.com" 
+                    href="mailto:yansdriving@gmail.com" 
                     className="text-gray-300 hover:text-accent-blue transition-colors"
                   >
-                    info@yansdrivinglessons.com
+                    yansdriving@gmail.com
                   </a>
                 </div>
               </div>
@@ -120,8 +120,9 @@ export default function Footer() {
                 <div>
                   <p className="text-gray-300 text-sm">
                     South London<br />
-                    Croydon, Sutton, Mitcham,<br />
-                    Wimbledon & surrounding areas
+                    Mitcham, Croydon, Tooting, Brixton,<br />
+                    Streatham, Norbury, West Wickham,<br />
+                    Purley & Wallington
                   </p>
                 </div>
               </div>
@@ -159,7 +160,7 @@ export default function Footer() {
                   <Instagram className="w-4 h-4" />
                 </a>
                 <a 
-                  href="mailto:info@yansdrivinglessons.com"
+                  href="mailto:yansdriving@gmail.com"
                   className="bg-accent-blue hover:bg-blue-600 p-2 rounded-full transition-colors"
                   aria-label="Email"
                 >
@@ -177,18 +178,15 @@ export default function Footer() {
           <div className="text-center">
             <h4 className="text-lg font-semibold mb-4">Areas We Cover</h4>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 text-sm text-gray-400">
-              <div>Croydon</div>
-              <div>Sutton</div>
               <div>Mitcham</div>
-              <div>Wimbledon</div>
-              <div>Morden</div>
+              <div>Croydon</div>
+              <div>Tooting</div>
+              <div>Brixton</div>
+              <div>Streatham</div>
+              <div>Norbury</div>
+              <div>West Wickham</div>
               <div>Purley</div>
-              <div>Thornton Heath</div>
-              <div>South Croydon</div>
               <div>Wallington</div>
-              <div>Carshalton</div>
-              <div>Raynes Park</div>
-              <div>New Malden</div>
             </div>
           </div>
         </div>
@@ -202,17 +200,7 @@ export default function Footer() {
               <p>&copy; 2024 Yan's Driving Lessons. All rights reserved.</p>
             </div>
             
-            <div className="flex space-x-6 text-sm">
-              <button className="text-gray-400 hover:text-white transition-colors">
-                Privacy Policy
-              </button>
-              <button className="text-gray-400 hover:text-white transition-colors">
-                Terms of Service
-              </button>
-              <button className="text-gray-400 hover:text-white transition-colors">
-                Cookie Policy
-              </button>
-            </div>
+
           </div>
 
           {/* Additional Info */}

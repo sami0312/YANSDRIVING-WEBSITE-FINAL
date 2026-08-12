@@ -98,7 +98,7 @@ ${formData.fullName}`
       // Generate email fallback
       const emailSubject = generateEmailSubject()
       const emailBody = generateEmailBody()
-      const emailUrl = `mailto:Yansdriving@gmail.com?subject=${emailSubject}&body=${emailBody}`
+      const emailUrl = `mailto:yansdriving@gmail.com?subject=${emailSubject}&body=${emailBody}`
       
       // Open WhatsApp in new tab
       window.open(whatsappUrl, '_blank')
@@ -305,10 +305,10 @@ ${formData.fullName}`
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
                     <a 
-                      href="mailto:Yansdriving@gmail.com" 
+                      href="mailto:yansdriving@gmail.com" 
                       className="text-accent-blue hover:underline"
                     >
-                      Yansdriving@gmail.com
+                      yansdriving@gmail.com
                     </a>
                     <p className="text-sm text-gray-500">24-hour response time</p>
                   </div>
@@ -319,7 +319,7 @@ ${formData.fullName}`
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Service Area</h4>
                     <p className="text-gray-600">South London</p>
-                    <p className="text-sm text-gray-500">Croydon, Sutton, Mitcham, Wimbledon & surrounding areas</p>
+                    <p className="text-sm text-gray-500">Mitcham, Croydon, Tooting, Brixton, Streatham, Norbury, West Wickham, Purley & Wallington</p>
                   </div>
                 </div>
               </div>
